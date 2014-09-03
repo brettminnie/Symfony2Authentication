@@ -1,3 +1,3 @@
-bdb_studios_auth_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: BDBStudiosAuthBundle:Default:index }
+user:
+    type: rest
+    resource: BDBStudios\AuthBundle\Controller\UserRestController

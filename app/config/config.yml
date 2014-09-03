@@ -82,3 +82,7 @@ fos_oauth_server:
 
     service:
         user_provider: fos_user.user_manager
+
+fos_rest:
+    routing_loader:
+        default_format: json
