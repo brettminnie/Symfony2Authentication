@@ -7,21 +7,20 @@ namespace BDBStudios\AuthBundle\Controller;
 use FOS\RestBundle\Controller\Annotations\View;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 class UserRestController extends Controller
 {
-    /**
-     * @return mixed
-     * "get_users"     [GET] /users
-     */
-    public function getUsersAction()
+
+    public function cgetAction(Request $request)
     {
-        $data =  $this->getDoctrine()->getRepository("BDBStudiosAuthBundle:User")->findAll();
+        $em = $this->getDoctrine()->getManager();
 
-        $view = new View($data);
-        $view->setTemplate(new JsonResponse());
+        $users = $em->getRepository('BDBStudiosAuthBundle:User');
 
-        return $this->get('fos_rest.view_handler')->handle($view);
+        return array (
+            'entities' => $users
+        );
     }
 
     public function getUserAction($slug)
